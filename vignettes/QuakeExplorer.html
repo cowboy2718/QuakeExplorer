@@ -18,6 +18,44 @@
 
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 
 
@@ -36,7 +74,47 @@
 
 
 
-<p>QuakeExplorer is a R package used for the specific purpose of exploring earth quake data from the NOAA (National Oceanic and Atmospheric Administration) Significant Earthquake dataset. Data can be obtained from the NOAA at <a href="https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&amp;s=1&amp;d=1" class="uri">https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&amp;s=1&amp;d=1</a>.</p>
+<div id="quakeexplorer-package-overview" class="section level2">
+<h2>QuakeExplorer Package Overview</h2>
+<p>QuakeExplorer is a R package used for the specific purpose of exploring earth quake data from the NOAA (National Oceanic and Atmospheric Administration) Significant Earthquake dataset. Data can be obtained from the NOAA at <a href="https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&amp;s=1&amp;d=1" class="uri">https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&amp;s=1&amp;d=1</a>. The dataset is historical covering the time span from 2150 BCE to CE 2018 along with location and earthquake statistics such as magnitude, intensity and damage metrics (e.g. deaths) to name but a multitude of measures available for exploration.</p>
+<p>QuakeExplorer provide routines for importing, cleaning (tidying) and plotting elements of the data set.</p>
+</div>
+<div id="r-packages" class="section level2">
+<h2>R Packages</h2>
+<p>The following R packages are used:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(QuakeExplorer)
+<span class="kw">library</span>(ggplot2)</code></pre></div>
+<pre><code>## Warning: package 'ggplot2' was built under R version 3.5.1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
+<pre><code>## Warning: package 'dplyr' was built under R version 3.5.1</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)</code></pre></div>
+</div>
+<div id="dowloading-and-importing-the-noaa-significant-earthquake-data-set" class="section level2">
+<h2>Dowloading and Importing the NOAA Significant Earthquake Data Set</h2>
+<p>The earthquake dataset from NOAA can be accessed from <a href="https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&amp;s=1&amp;d=1" class="uri">https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&amp;s=1&amp;d=1</a>. From the NOAA site, the data set can be downloaded as a <strong>tab delimited</strong> format which can be used for importing into R (or any other package suited to read tab delimited files).</p>
+<p>Once the data set is downloaded to a working directory, it will be named <strong>results</strong> but the extention <strong>.csv</strong> must be added. Then, the following can be used to import the data to an R data frame:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">import_quake_data</span>(<span class="st">&quot;results.csv&quot;</span>)</code></pre></div>
+</div>
+<div id="formatting-the-data" class="section level2">
+<h2>Formatting the Data</h2>
+<p>Prior to analysis, the imported data set must be organized a bit. Namely, combining year, month and day columns and making provisions for BCE (Before Common Era) dates (to a column called <strong>datevalue</strong>). Additionally, location names are cleaned up (from all upper case to a more readable lower case) to generate more user friendly labeling of graphs.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">any_name_df&lt;-<span class="kw">eq_clean_data</span>(results)</code></pre></div>
+</div>
+<div id="creating-a-timeline" class="section level2">
+<h2>Creating a Timeline</h2>
+<p>The main purpose of this package is to provide an option for the graphical exploration of the data. One such exploration involves the creation of a new <em>geom</em> in R called <strong>geom_timeline</strong>.</p>
+<p>Specific variables of interest are <strong>COUNTRY</strong>, <strong>TOTAL_DEATHS</strong> and <strong>EQ_PRIMARY</strong> (primary earthquake magnitude). Since there is a significant amount of events recorded, the use of the variable <strong>datevalue</strong> can be used to reduce the data set for exploration.</p>
+<p>Use of the <strong>dplyr</strong> library and piping is use with <strong>geom_timeline</strong> geom. Additional graphical features, such as titles, axis labeling and so on can added on through standard <strong>ggplot2</strong> syntax.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">any_name_df %&gt;%<span class="kw">filter</span>(COUNTRY ==<span class="st">&quot;CHINA&quot;</span> |<span class="st"> </span>COUNTRY==<span class="st">&quot;USA&quot;</span>) %&gt;%<span class="kw">filter</span>(datevalue &gt;<span class="st"> '1900-01-01'</span>, datevalue &lt;<span class="st"> '1950-01-01'</span>) %&gt;%<span class="st"> </span><span class="kw">ggplot</span>() +<span class="st"> </span><span class="kw">geom_timeline</span>(<span class="kw">aes</span>(<span class="dt">x =</span> datevalue, <span class="dt">y =</span> COUNTRY, <span class="dt">color =</span> TOTAL_DEATHS, <span class="dt">size =</span> EQ_PRIMARY)) +<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;NOAA Significant Earthquake Data Set&quot;</span>)+<span class="kw">ylab</span>(<span class="st">&quot;Country&quot;</span>)+<span class="kw">xlab</span>(<span class="st">&quot;Date&quot;</span>)+<span class="st"> </span><span class="kw">scale_size_continuous</span>(<span class="dt">name =</span> <span class="st">'Richter'</span>) +<span class="st"> </span><span class="kw">scale_color_continuous</span>(<span class="dt">name =</span> <span class="st">'Mortality (deaths)'</span>)+<span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">90</span>,<span class="dt">hjust=</span><span class="dv">3</span>))</code></pre></div>
+</div>
 
 
 

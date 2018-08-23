@@ -13,7 +13,7 @@ vignette: >
 
 QuakeExplorer is a R package used for the specific purpose of exploring earth quake data from the  NOAA (National Oceanic and Atmospheric Administration) Significant Earthquake dataset.  Data can be obtained from the NOAA at https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&s=1&d=1.  The dataset is historical covering the time span from 2150 BCE to CE 2018  along with location and earthquake statistics such as magnitude, intensity and damage metrics (e.g. deaths) to name but a multitude of measures available for exploration.
 
-QuakeExplorer provide routines for importing, cleaning (tidying) and ploting elements of the data set.
+QuakeExplorer provide routines for importing, cleaning (tidying) and plotting elements of the data set.
 
 ## R Packages
 
@@ -28,11 +28,35 @@ library(readr)
 
 ## Dowloading and Importing the NOAA Significant Earthquake Data Set
 
-The earthquake dataset from NOAA can be accessed from https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&s=1&d=1.  From the NOAA site, the data set can be downloaded as a **tab delimiated** format which can be used for importing into R (or any other package suited to read tab delimited files).  
+The earthquake dataset from NOAA can be accessed from https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&s=1&d=1.  From the NOAA site, the data set can be downloaded as a **tab delimited** format which can be used for importing into R (or any other package suited to read tab delimited files).  
 
 Once the data set is downloaded to a working directory, it will be named **results** but the extention **.csv** must be added.  Then, the following can be used to import the data to an R data frame:
 
-```{r message=FALSE}
+```{r message=FALSE, eval=FALSE}
 import_quake_data("results.csv")
 ```
+
+## Formatting the Data
+
+Prior to analysis, the imported data set must be organized a bit.  Namely, combining year, month and day columns and making provisions for BCE (Before Common Era) dates (to a column called **datevalue**).  Additionally, location names are cleaned up (from all upper case to a more readable lower case) to generate more user friendly labeling of graphs.
+
+```{r message=FALSE, eval=FALSE}
+any_name_df<-eq_clean_data(results)
+```
+
+## Creating a Timeline
+
+The main purpose of this package is to provide an option for the graphical exploration of the data.  One such exploration involves the creation of a new *geom* in R called **geom_timeline**.  
+
+Specific variables of interest are **COUNTRY**, **TOTAL_DEATHS** and **EQ_PRIMARY** (primary earthquake magnitude).  Since there is a significant amount of events recorded, the use of the variable **datevalue** can be used to reduce the data set for exploration.  
+
+Use of the **dplyr** library and piping is use with **geom_timeline** geom.  Additional graphical features, such as titles, axis labeling and so on can added on through standard **ggplot2** syntax.
+
+```{r message=FALSE, eval=FALSE}
+
+any_name_df %>%filter(COUNTRY =="CHINA" | COUNTRY=="USA") %>%filter(datevalue > '1900-01-01', datevalue < '1950-01-01') %>% ggplot() + geom_timeline(aes(x = datevalue, y = COUNTRY, color = TOTAL_DEATHS, size = EQ_PRIMARY)) + ggtitle("NOAA Significant Earthquake Data Set")+ylab("Country")+xlab("Date")+ scale_size_continuous(name = 'Richter') + scale_color_continuous(name = 'Mortality (deaths)')+theme(axis.text.x=element_text(angle=90,hjust=3))
+
+```
+
+
 

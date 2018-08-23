@@ -48,17 +48,19 @@ eq_clean_data<-function(df){
   # Clean location names and make then lower case, less the country code, and capitalize the first part of the string
   
   df$location_name <- tolower(gsub("^.*:\\s*","",df$LOCATION_NAME))
-  dflocation_name <- sapply(df$location_name,simpleCap)
+  df$location_name <- sapply(df$location_name,simpleCap)
 
   # Assure that latitude and longitude are numeric
 
   df$lat<-as.numeric(df$LATITUDE)
   df$long<-as.numeric(df$LONGITUDE)
   
-  BCE <- (year <= 0)
+  BCE <- (df$YEAR <= 0)
   
   #Add in missing month and day of July 2, which is roughly the midpoint of the year.
   
+  df$MONTH <- as.numeric(df$MONTH)
+  df$DAY<- as.numeric(df$DAY)
   df <- df %>% dplyr::mutate(MONTH = if_else(is.na(MONTH), 7, MONTH))
   df <- df %>% dplyr::mutate(DAY = if_else(is.na(DAY), 2, DAY))
   
@@ -73,5 +75,6 @@ eq_clean_data<-function(df){
   orig <- as.numeric(lubridate::ymd("0000-01-01"))
   df$CE_equivalent <- as.numeric(df$datevalue)
   df$datevalue[BCE] <- as.Date(orig - (df$CE_equivalent[BCE] - orig), origin = lubridate::origin)
+  return(df)
 
 }
