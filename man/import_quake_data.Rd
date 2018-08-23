@@ -4,7 +4,7 @@
 \alias{import_quake_data}
 \title{Reading an earth quake datadata set}
 \usage{
-import_quake_data(filename)
+import_quake_data(x)
 }
 \arguments{
 \item{filename}{Filename in csv format to be read. The file must be located in the working directory.}
@@ -16,7 +16,7 @@ Returns a data frame from a csv file into tabular format.
 This function reads in an exported data set from the NOAA Signficant Earthquake Database.
 }
 \note{
-Data must have a .csv extension.  The NOAA data is exported as a tab delimited file type without a file extension designation.
+Data must have a .csv extension.  The NOAA data is exported as a tab delimited file called "results" without a file extension designation.
 }
 \references{
 

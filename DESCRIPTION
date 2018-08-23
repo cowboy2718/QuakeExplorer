@@ -9,5 +9,8 @@ Description: Provide an exploratory interface in R to the NOAA Significant Earth
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-VignetteBuilder: utils  
+VignetteBuilder: utils  ,
+    knitr
 RoxygenNote: 6.1.0
+Suggests: knitr,
+    rmarkdown
