@@ -38,29 +38,36 @@ import_quake_data("results.csv")
 
 ## Formatting the Data
 
-Prior to analysis, the imported data set must be organized a bit.  Namely, combining year, month and day columns and making provisions for BCE (Before Common Era) dates (to a column called **datevalue**).  Additionally, location names are cleaned up (from all upper case to a more readable lower case) to generate more user friendly labeling of graphs.
+Prior to analysis, the imported data set must be organized a bit.  Namely, combining year, month and day columns and making provisions for BC and AD dates (to a column or variable called **datevalue**).  
 
 ```{r message=FALSE, eval=FALSE}
 any_name_df<-eq_clean_data(results)
 ```
 
-## Creating a Timeline
+## Creating a Timeline or Time Series Plot of Earthquake Events
 
-The main purpose of this package is to provide an option for the graphical exploration of the data.  One such exploration involves the creation of a new *geom* in R called **geom_timeline**.  
+The main purpose of this package is to provide an option for the graphical exploration of the data as a time serioes through the creation of a new *geom* in R called **geom_timeline**.  
 
 Specific variables of interest are **COUNTRY**, **TOTAL_DEATHS** and **EQ_PRIMARY** (primary earthquake magnitude).  Since there is a significant amount of events recorded, the use of the variable **datevalue** can be used to reduce the data set for exploration.  
 
-Use of the **dplyr** library and piping is use with **geom_timeline** geom.  Additional graphical features, such as titles, axis labeling and so on can added on through standard **ggplot2** syntax.
+Use of the **dplyr** library and piping may be used with **geom_timeline** geom.  Additional graphical features, such as titles, axis labeling and so on can added on through standard **ggplot2** syntax as shown below.
 
 ```{r message=FALSE, eval=FALSE}
 
-any_name_df %>%filter(COUNTRY =="CHINA" | COUNTRY=="USA") %>%filter(datevalue > '1900-01-01', datevalue < '1950-01-01') %>% ggplot()
-+ geom_timeline(aes(x = datevalue, y = COUNTRY, color = TOTAL_DEATHS, size = EQ_PRIMARY)) 
-+ ggtitle("NOAA Significant Earthquake Data Set")+ylab("Country")+xlab("Date")
-+ scale_size_continuous(name = 'Richter') + scale_color_continuous(name = 'Mortality (deaths)')
-+theme(axis.text.x=element_text(angle=90,hjust=3))
+any_name_df %>% filter(COUNTRY =="CHINA" | COUNTRY=="USA") %>% filter(datevalue > '1900-01-01', datevalue < '1950-01-01') %>% ggplot() + geom_timeline(aes(x = datevalue, y = COUNTRY, color = TOTAL_DEATHS, size = EQ_PRIMARY)) + ggtitle("NOAA Significant Earthquake Data Set")+ylab("Country")+xlab("Date") + scale_size_continuous(name = 'Richter') + scale_color_continuous(name = 'Mortality (deaths)') +theme(axis.text.x=element_text(angle=90,hjust=3))
 
 ```
 
+## Labeling a Timeline
 
+The time series intepretation of earthquake events can be further enhanced by adding a meta data layer to the time series graph with labels of specific locations.  Since labeling all locations would render an illegible display, the use of **geom_label** will limit the amount of labels to top magnitude events.  
+
+As stated previously, additonal enhancements can be made to the graph with standard ggplot syntax.
+
+
+```{r  message=FALSE, eval=FALSE}
+
+any_name_df %>% filter(COUNTRY =="CHINA" | COUNTRY=="USA") %>% filter(datevalue > '1900-01-01', datevalue < '1950-01-01') %>% ggplot() +geom_timeline_label(aes(x = datevalue, y = COUNTRY, magnitude = EQ_PRIMARY,label = location_name, max_labels= 4))
+
+```
 

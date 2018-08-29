@@ -12,7 +12,7 @@
 
 <meta name="author" content="Tony Gojanovic" />
 
-<meta name="date" content="2018-08-23" />
+<meta name="date" content="2018-08-29" />
 
 <title>QuakeExplorer</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">QuakeExplorer</h1>
 <h4 class="author"><em>Tony Gojanovic</em></h4>
-<h4 class="date"><em>2018-08-23</em></h4>
+<h4 class="date"><em>2018-08-29</em></h4>
 
 
 
@@ -105,19 +105,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="formatting-the-data" class="section level2">
 <h2>Formatting the Data</h2>
-<p>Prior to analysis, the imported data set must be organized a bit. Namely, combining year, month and day columns and making provisions for BCE (Before Common Era) dates (to a column called <strong>datevalue</strong>). Additionally, location names are cleaned up (from all upper case to a more readable lower case) to generate more user friendly labeling of graphs.</p>
+<p>Prior to analysis, the imported data set must be organized a bit. Namely, combining year, month and day columns and making provisions for BC and AD dates (to a column or variable called <strong>datevalue</strong>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">any_name_df&lt;-<span class="kw">eq_clean_data</span>(results)</code></pre></div>
 </div>
-<div id="creating-a-timeline" class="section level2">
-<h2>Creating a Timeline</h2>
-<p>The main purpose of this package is to provide an option for the graphical exploration of the data. One such exploration involves the creation of a new <em>geom</em> in R called <strong>geom_timeline</strong>.</p>
+<div id="creating-a-timeline-or-time-series-plot-of-earthquake-events" class="section level2">
+<h2>Creating a Timeline or Time Series Plot of Earthquake Events</h2>
+<p>The main purpose of this package is to provide an option for the graphical exploration of the data as a time serioes through the creation of a new <em>geom</em> in R called <strong>geom_timeline</strong>.</p>
 <p>Specific variables of interest are <strong>COUNTRY</strong>, <strong>TOTAL_DEATHS</strong> and <strong>EQ_PRIMARY</strong> (primary earthquake magnitude). Since there is a significant amount of events recorded, the use of the variable <strong>datevalue</strong> can be used to reduce the data set for exploration.</p>
-<p>Use of the <strong>dplyr</strong> library and piping is use with <strong>geom_timeline</strong> geom. Additional graphical features, such as titles, axis labeling and so on can added on through standard <strong>ggplot2</strong> syntax.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">any_name_df %&gt;%<span class="kw">filter</span>(COUNTRY ==<span class="st">&quot;CHINA&quot;</span> |<span class="st"> </span>COUNTRY==<span class="st">&quot;USA&quot;</span>) %&gt;%<span class="kw">filter</span>(datevalue &gt;<span class="st"> '1900-01-01'</span>, datevalue &lt;<span class="st"> '1950-01-01'</span>) %&gt;%<span class="st"> </span><span class="kw">ggplot</span>()
-+<span class="st"> </span><span class="kw">geom_timeline</span>(<span class="kw">aes</span>(<span class="dt">x =</span> datevalue, <span class="dt">y =</span> COUNTRY, <span class="dt">color =</span> TOTAL_DEATHS, <span class="dt">size =</span> EQ_PRIMARY)) 
-+<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;NOAA Significant Earthquake Data Set&quot;</span>)+<span class="kw">ylab</span>(<span class="st">&quot;Country&quot;</span>)+<span class="kw">xlab</span>(<span class="st">&quot;Date&quot;</span>)
-+<span class="st"> </span><span class="kw">scale_size_continuous</span>(<span class="dt">name =</span> <span class="st">'Richter'</span>) +<span class="st"> </span><span class="kw">scale_color_continuous</span>(<span class="dt">name =</span> <span class="st">'Mortality (deaths)'</span>)
-+<span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">90</span>,<span class="dt">hjust=</span><span class="dv">3</span>))</code></pre></div>
+<p>Use of the <strong>dplyr</strong> library and piping may be used with <strong>geom_timeline</strong> geom. Additional graphical features, such as titles, axis labeling and so on can added on through standard <strong>ggplot2</strong> syntax as shown below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">any_name_df %&gt;%<span class="st"> </span><span class="kw">filter</span>(COUNTRY ==<span class="st">&quot;CHINA&quot;</span> |<span class="st"> </span>COUNTRY==<span class="st">&quot;USA&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(datevalue &gt;<span class="st"> '1900-01-01'</span>, datevalue &lt;<span class="st"> '1950-01-01'</span>) %&gt;%<span class="st"> </span><span class="kw">ggplot</span>() +<span class="st"> </span><span class="kw">geom_timeline</span>(<span class="kw">aes</span>(<span class="dt">x =</span> datevalue, <span class="dt">y =</span> COUNTRY, <span class="dt">color =</span> TOTAL_DEATHS, <span class="dt">size =</span> EQ_PRIMARY)) +<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;NOAA Significant Earthquake Data Set&quot;</span>)+<span class="kw">ylab</span>(<span class="st">&quot;Country&quot;</span>)+<span class="kw">xlab</span>(<span class="st">&quot;Date&quot;</span>) +<span class="st"> </span><span class="kw">scale_size_continuous</span>(<span class="dt">name =</span> <span class="st">'Richter'</span>) +<span class="st"> </span><span class="kw">scale_color_continuous</span>(<span class="dt">name =</span> <span class="st">'Mortality (deaths)'</span>) +<span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">90</span>,<span class="dt">hjust=</span><span class="dv">3</span>))</code></pre></div>
+</div>
+<div id="labeling-a-timeline" class="section level2">
+<h2>Labeling a Timeline</h2>
+<p>The time series intepretation of earthquake events can be further enhanced by adding a meta data layer to the time series graph with labels of specific locations. Since labeling all locations would render an illegible display, the use of <strong>geom_label</strong> will limit the amount of labels to top magnitude events.</p>
+<p>As stated previously, additonal enhancements can be made to the graph with standard ggplot syntax.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">any_name_df %&gt;%<span class="st"> </span><span class="kw">filter</span>(COUNTRY ==<span class="st">&quot;CHINA&quot;</span> |<span class="st"> </span>COUNTRY==<span class="st">&quot;USA&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(datevalue &gt;<span class="st"> '1900-01-01'</span>, datevalue &lt;<span class="st"> '1950-01-01'</span>) %&gt;%<span class="st"> </span><span class="kw">ggplot</span>() +<span class="kw">geom_timeline_label</span>(<span class="kw">aes</span>(<span class="dt">x =</span> datevalue, <span class="dt">y =</span> COUNTRY, <span class="dt">magnitude =</span> EQ_PRIMARY,<span class="dt">label =</span> location_name, <span class="dt">max_labels=</span> <span class="dv">4</span>))</code></pre></div>
 </div>
 
 
