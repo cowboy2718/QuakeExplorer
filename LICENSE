@@ -1,5 +1,6 @@
-{{ QuakeExplorer }}
-Copyright (C) {{ 2018 }}  {{ student }}
+QuakeExplorer 
+Copyright (C) 2018 Tony Gojanovic
+Licensed under GPL-3
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
