@@ -22,7 +22,7 @@ GitHub:  https://github.com/cowboy2718/QuakeExplorer
 
 ### Package Details
 
-Specific details on the package QuakeExplorer may be obtained through the vignette files.  The vignette files show specific usage and syntax.
+Specific details on the package QuakeExplorer may be obtained through the vignette files.  The vignette files show specific usage and syntax of the functions used in this package.
 
 ### Travis Badge
 
