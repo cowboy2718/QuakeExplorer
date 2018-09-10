@@ -102,9 +102,9 @@ eq_clean_data<-function(df){
   
   # Format or tidy date sequences
   df$year <- stringr::str_pad(abs(df$YEAR), 4, "left","0")
-  df$month <- stringr::str_pad(df$MONTH, 2, "left","0")
   df$day <- stringr::str_pad(df$DAY, 2, "left","0")
-  
+  df$month <- stringr::str_pad(df$MONTH, 2, "left","0")
+ 
   # Create a common data value based on the year, month and day and use a hyphen to seperate them into a new variable called datevalue
   
   df$datevalue <- (lubridate::ymd(paste(df$year, df$month, df$day, sep = "-")))
