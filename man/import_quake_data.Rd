@@ -2,7 +2,7 @@
 % Please edit documentation in R/QExplorer.R
 \name{import_quake_data}
 \alias{import_quake_data}
-\title{Reading an earth quake datadata set}
+\title{Importing the NOAA Signficant Earthquake Database.}
 \usage{
 import_quake_data(x)
 }
@@ -10,14 +10,35 @@ import_quake_data(x)
 \item{filename}{Filename in csv format to be read. The file must be located in the working directory.}
 }
 \value{
-Returns a data frame from a csv file into tabular format.
+Returns a data frame from a csv file into a dataframd called "results".
 }
 \description{
-This function reads in an exported data set from the NOAA Signficant Earthquake Database.
+This function imports in the NOAA Signficant Earthquake Database as a tab delimited format and converts it to an R dataframe.
+}
+\details{
+The entire NOAA dataset can be used (about 5500 records).
+Follow the instructions on the NOAA site for downloading the entire dataset to a tab delimited file.
+The NOAA Signficiant Earthquake site is found at:
+\url{https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&s=1&d=1.}
 }
 \note{
-Data must have a .csv extension.  The NOAA data is exported as a tab delimited file called "results" without a file extension designation.
+Exported earthquake data must have a .csv extension.  
+The NOAA data is exported as a tab delimited file called "results" without a file extension designation. 
+Specifically,  
+\itemize{
+1. Data will be downloaded as a tab delimited file called "results" from the NOAA site. 
+2. The exported tab delimited file is added to the working directory.
+3. The tab delimited file is given a .csv extension.
+4. Use the R routine to import the tab delimited file to a dataframe.
 }
-\references{
+}
+\examples{
+# Downloaded NOAA file in tab delimited format with a .csv extension.
+# Returns a dataframe with the default name "results."
+\dontrun{
 
+library(readr)
+import_quake_data("results.csv")
+
+}
 }
