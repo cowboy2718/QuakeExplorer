@@ -19,6 +19,7 @@ Imports:
     leaflet,
     readr,
     magrittr,
-    stringr
+    stringr,
+    lubridate
 Suggests: knitr,
     rmarkdown
