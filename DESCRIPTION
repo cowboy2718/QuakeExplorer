@@ -21,6 +21,7 @@ Imports:
     magrittr,
     stringr,
     lubridate,
-    utils
+    utils,
+    testthat
 Suggests: knitr,
     rmarkdown
