@@ -28,6 +28,8 @@ Specific details on the package QuakeExplorer may be obtained through the vignet
 
 The following indicates the status of the most recent build with Travis:
 
+https://travis-ci.org/cowboy2718/QuakeExplorer.svg?branch=master
+
 ### References
 
 The following are useful resources.

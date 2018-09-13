@@ -36,7 +36,7 @@
 
 import_quake_data<-function(x){                                            #Import the NOAA data set called "results.csv"
   library(readr)
-  results <- read_delim(x, "\t", escape_double = FALSE, trim_ws = TRUE)    #Use readr to import the tab delimited file and call it results
+  results <- readr::read_delim(x, "\t", escape_double = FALSE, trim_ws = TRUE)    #Use readr to import the tab delimited file and call it results
  }
 
 # Simple capitalization routine which capitalizes the first letter of a string (if it's in lower case).
