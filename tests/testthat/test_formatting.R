@@ -13,7 +13,7 @@ test_that("Import function returns a dataframe",{
 })
 
 test_that("Data formatting works",{
-  test_set <- eq_clean_data(any_name_df)
+  test_set <- eq_clean_data(results)
   expect_is(test_set, "tbl_df")
   expect_is(test_set$LATITUDE, "numeric")
   expect_is(test_set$LONGITUDE, "numeric")
