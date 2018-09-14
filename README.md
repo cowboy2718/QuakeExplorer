@@ -17,8 +17,12 @@ For more information, see https://en.wikipedia.org/wiki/Earthquake
 
 ### Package Name and Location
 
-Package: FMEA   
-GitHub:  https://github.com/cowboy2718/QuakeExplorer
+To install this package and begin exploring earthquakes, use devtools and the following:
+
+```r
+devtools::install_github('cowboy2718/QuakeExplorer')
+library(QuakeExplorer)
+```
 
 ### Package Details
 
