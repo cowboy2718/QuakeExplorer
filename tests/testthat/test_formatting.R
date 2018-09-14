@@ -19,3 +19,7 @@ test_that("Data formatting works",{
   expect_is(test_set$LONGITUDE, "numeric")
 })
 
+test_that("letter formatting works",{
+  expect_equal(simpleCap("North korea"),
+               "North Korea")
+})
