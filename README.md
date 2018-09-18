@@ -15,6 +15,11 @@ The Significant Earthquake Database contains information on destructive earthqua
 
 For more information, see https://en.wikipedia.org/wiki/Earthquake
 
+### What Does this Package Do?
+
+This package, **QuakeExplorer**, is used to visually explore a specific dataset collected by the National Oceanic and Atmospheric Adminstration.  It is expected to be used as a preliminary method or jumping point for further studies.  This program can be used by geologists, archeologists, astronomers, anthropologists to name but a few disciplines that would find this data useful.
+
+
 ### Package Name and Location
 
 To install this package and begin exploring earthquakes, use devtools and the following:
