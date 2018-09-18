@@ -1,3 +1,9 @@
+### Travis Badge
+
+The following indicates the status of the most recent build with Travis:
+
+[![Build Status](https://travis-ci.org/cowboy2718/QuakeExplorer.svg?branch=master)](https://travis-ci.org/cowboy2718/QuakeExplorer)
+
 ## QuakeExplorer
 R package to explore historical earthquake data found in the (National Oceanic and Atmospheric Administration) NOAA Significant Earthquakes dataset.  
 Tony Gojanovic   
@@ -32,12 +38,6 @@ library(QuakeExplorer)
 ### Package Details
 
 Specific details on the package QuakeExplorer may be obtained through the vignette files.  The vignette files show specific usage and syntax of the functions used in this package.
-
-### Travis Badge
-
-The following indicates the status of the most recent build with Travis:
-
-[![Build Status](https://travis-ci.org/cowboy2718/QuakeExplorer.svg?branch=master)](https://travis-ci.org/cowboy2718/QuakeExplorer)
 
 ### References
 
