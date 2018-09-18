@@ -1,7 +1,7 @@
 # Tony Gojanovic
 # Coursera "R Programming Capstone Project"
 # Final project
-#'September 2018
+# September 2018
 
 #' Spatial analysis of earthquake data (earth mapping) with only a date popup.
 #' 

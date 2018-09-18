@@ -2,8 +2,7 @@
 % Please edit documentation in R/spatial_explorer.R
 \name{eq_map}
 \alias{eq_map}
-\title{September 2018
-Spatial analysis of earthquake data (earth mapping) with only a date popup.}
+\title{Spatial analysis of earthquake data (earth mapping) with only a date popup.}
 \usage{
 eq_map(data, annot_col = NULL)
 }

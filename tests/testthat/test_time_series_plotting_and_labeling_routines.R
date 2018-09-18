@@ -4,7 +4,7 @@ library(dplyr)
 library(ggplot2)
 library(lubridate)
 
-context("checking time series plotting")
+context("checking time series plotting and labeling routines")
 
 results <- read_delim('results.csv', delim = '\t')
 results<-eq_clean_data(results)

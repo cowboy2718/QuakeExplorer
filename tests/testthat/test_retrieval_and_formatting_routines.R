@@ -2,7 +2,7 @@ library(QuakeExplorer)
 library(readr)
 library(dplyr)
 library(lubridate)
-context("Formatting data function")
+context("importing and formatting data functions")
 results <- read_delim('results.csv', delim = '\t')
 
 

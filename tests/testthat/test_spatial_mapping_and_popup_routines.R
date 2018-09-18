@@ -5,7 +5,7 @@ library(ggplot2)
 library(lubridate)
 library(leaflet)
 
-context("checking spatial mapping")
+context("checking spatial mapping and popup development routines")
 
 results <- read_delim('results.csv', delim = '\t')
 results<-eq_clean_data(results)
