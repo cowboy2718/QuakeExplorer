@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Tony Gojanovic
 # Coursera "R Programming Capstone Project"
 # Final project
@@ -87,8 +86,6 @@ eq_create_label <- function(data) {
 }
 
 
-
-=======
 # Tony Gojanovic
 # Coursera "R Programming Capstone Project"
 # Final project
@@ -177,6 +174,3 @@ eq_create_label <- function(data) {
   return(paste(eventlocation,eventdate, eventmagnitude, eventmortality, sep = '<br/>'))
 }
 
-
-
->>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968

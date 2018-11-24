@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Tony Gojanovic
 # Coursera "R Programming Capstone Project"
 # Final project
@@ -115,7 +115,7 @@ eq_clean_data<-function(df){
   return(df)
 
 }
-=======
+
 # Tony Gojanovic
 # Coursera "R Programming Capstone Project"
 # Final project
@@ -231,4 +231,4 @@ eq_clean_data<-function(df){
   return(df)
 
 }
->>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968
+

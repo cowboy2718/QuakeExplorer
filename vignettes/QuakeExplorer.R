@@ -1,9 +1,9 @@
-<<<<<<< HEAD
 ## ----warning=FALSE, message=FALSE----------------------------------------
 library(QuakeExplorer)
 library(ggplot2)
 library(dplyr)
 library(readr)
+library(leaflet)
 
 ## ----message=FALSE, eval=FALSE-------------------------------------------
 #  library(readr)
@@ -35,7 +35,6 @@ library(readr)
 #  any_name_df %>% filter(COUNTRY =="CHINA" | COUNTRY=="USA") %>% filter(datevalue > '1900-01-01', datevalue < '1950-01-01') %>% ggplot() +geom_timeline_label(aes(x = datevalue, y = COUNTRY, magnitude = EQ_PRIMARY,label = location_name, max_labels= 4))
 #  
 
-=======
 ## ----warning=FALSE, message=FALSE----------------------------------------
 library(QuakeExplorer)
 library(ggplot2)
@@ -101,4 +100,3 @@ library(leaflet)
 #  any_name_df<-any_name_df%>%mutate(popup_info=eq_create_label(any_name_df))
 #  any_name_df%>%leaflet() %>% leaflet::addTiles()%>%addCircleMarkers(lng = ~LONGITUDE,lat = ~LATITUDE,radius = ~EQ_PRIMARY,weight=1,popup=~popup_info)
 
->>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968

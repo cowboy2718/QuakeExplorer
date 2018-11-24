@@ -7,11 +7,19 @@
 geom_timeline(mapping = NULL, data = NULL, stat = "identity",
   position = "identity", na.rm = FALSE, show.legend = NA,
   inherit.aes = TRUE, ...)
+
+geom_timeline(mapping = NULL, data = NULL, stat = "identity",
+  position = "identity", na.rm = FALSE, show.legend = NA,
+  inherit.aes = TRUE, ...)
 }
 \description{
 This function provides a time series interpretation of earthquakes over time expressed as a bubble plot.
+
+This function provides a time series interpretation of earthquakes over time expressed as a bubble plot.
 }
 \details{
+geom_timeline provides a time series interpretation on filtered NOAA Significant Earthquake data.
+
 geom_timeline provides a time series interpretation on filtered NOAA Significant Earthquake data.
 }
 \note{
@@ -21,8 +29,46 @@ For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
 Aesthetic considerations for the number of countries and data ranges should be taken into consideration as to not plot too many data points rendering the graph unreadable.
 Use of dplyr and piping to filter the data set is suggested. 
 Additional graphical elements can be added using standard ggplot syntax as shown in the example.
+
+Countries and data ranges are modified using dplyr prior to using the geom for time series plotting. 
+For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+
+Aesthetic considerations for the number of countries and data ranges should be taken into consideration as to not plot too many data points rendering the graph unreadable.
+Use of dplyr and piping to filter the data set is suggested. 
+Additional graphical elements can be added using standard ggplot syntax as shown in the example.
 }
 \examples{
+\dontrun{
+
+library(dplyr)
+library(ggplot2)
+
+any_name_df \%>\% filter(COUNTRY =="CHINA" | COUNTRY=="USA") \%>\% 
+filter(datevalue > '1900-01-01', datevalue < '1950-01-01') \%>\% 
+ggplot() + geom_timeline(aes(x = datevalue, y = COUNTRY, color = TOTAL_DEATHS, size = EQ_PRIMARY)) 
+
+# Additional graph metadata can be added using standard ggplot syntax
+# For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+
+library(dplyr)
+library(ggplot2)
+
+any_name_df<-eq_clean_data(results)
+
+p1<-any_name_df \%>\% filter(COUNTRY =="CHINA" | COUNTRY=="USA") \%>\% 
+filter(datevalue > '1900-01-01', datevalue < '1950-01-01') \%>\% 
+ggplot() + geom_timeline(aes(x = datevalue, y = COUNTRY, color = TOTAL_DEATHS, size = EQ_PRIMARY))
+   
+p1<-p1 + ggtitle("NOAA Significant Earthquake Data")
+
+p1<-p1 + ylab("Country")+xlab("Date") + scale_size_continuous(name = 'Richter')  
+
+p1<-p1  +scale_color_continuous(name = 'Mortality (deaths)') +theme(axis.text.x=element_text(angle=90,hjust=3))
+
+p1
+
+}
+
 \dontrun{
 
 library(dplyr)

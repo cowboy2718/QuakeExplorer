@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Tony Gojanovic
 # Coursera "R Programming Capstone Project"
 # Final project
@@ -183,7 +182,7 @@ auto_labeler <-
     }
   )
 
-=======
+
 # Tony Gojanovic
 # Coursera "R Programming Capstone Project"
 # Final project
@@ -352,4 +351,3 @@ auto_labeler <-
     }
   )
 
->>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968

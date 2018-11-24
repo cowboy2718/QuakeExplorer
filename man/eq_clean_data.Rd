@@ -5,17 +5,37 @@
 \title{Formatting the imported NOAA Database into a usable format.}
 \usage{
 eq_clean_data(df)
+
+eq_clean_data(df)
 }
 \value{
+A formatted dataframe is returned with a location name that has a properly formatted for graphing, latitude and longditude values are numeric and dates are formatted approriately.
+
 A formatted dataframe is returned with a location name that has a properly formatted for graphing, latitude and longditude values are numeric and dates are formatted approriately.
 }
 \description{
 This function modfies the original raw data set from the NOAA Signficant Earthquake Database by formatting key columns to be used in exploratory analysis.
+
+This function modfies the original raw data set from the NOAA Signficant Earthquake Database by formatting key columns to be used in exploratory analysis.
 }
 \note{
 This function modifies key fields of the imported NOAA earth quake data set for exploratory analysis.  It will also return a dataframe with a properly formatted date field called 'datevalue.'
+
+This function modifies key fields of the imported NOAA earth quake data set for exploratory analysis.  It will also return a dataframe with a properly formatted date field called 'datevalue.'
 }
 \examples{
+\dontrun{
+
+# Use the "results" dataframe name from the import routine.
+# Reformat select fields for graphical analysis.  
+# Assign the newly formatted dataframe to a user chosen name.
+
+library(dplyr)
+any_name_df<-eq_clean_data(results)
+
+} 
+
+
 \dontrun{
 
 # Use the "results" dataframe name from the import routine.

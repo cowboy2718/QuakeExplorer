@@ -2,25 +2,37 @@
 % Please edit documentation in R/spatial_explorer.R
 \name{eq_map}
 \alias{eq_map}
-<<<<<<< HEAD
 \title{Routine for spatial analysis of earthquake data (earth mapping)}
-=======
-\title{Spatial analysis of earthquake data (earth mapping) with only a date popup.}
->>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968
 \usage{
+eq_map(data, annot_col = NULL)
+
 eq_map(data, annot_col = NULL)
 }
 \description{
-<<<<<<< HEAD
 This function provides a spatial interpretation of earthquake data with a popup based on datevalue.
-=======
+
 This function provides a spatial interpretation of earthquake data with a popup based on datevalue.  This renders the earthquake data as an interactive map.
->>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968
 }
 \note{
 For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+
+For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
 }
 \examples{
+\dontrun{
+
+# User inputs a country and range of date to be explored.
+# The earth map will plot the points as a leaflet with a pop up based on the date of the event. 
+# For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+
+library(leaflet)
+library(dplyr)
+
+any_name_df\%>\%filter(COUNTRY=="GREECE")\%>\%filter(datevalue > '1900-01-01', datevalue < '1950-01-01') \%>\% eq_map(annot_col = "datevalue")
+
+} 
+
+
 \dontrun{
 
 # User inputs a country and range of date to be explored.

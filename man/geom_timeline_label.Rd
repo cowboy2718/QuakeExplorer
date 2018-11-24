@@ -4,19 +4,22 @@
 \alias{geom_timeline_label}
 \title{Geom for labeling the time series plot.}
 \usage{
-<<<<<<< HEAD
-geom_timeline_label(mapping = NULL, data = NULL, stat = "identity",
-  position = "identity", na.rm = FALSE, show.legend = NA,
-=======
 geom_timeline_label(data = NULL, na.rm = FALSE, show.legend = NA,
   mapping = NULL, stat = "identity", position = "identity",
->>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968
+  inherit.aes = TRUE, ...)
+
+geom_timeline_label(data = NULL, na.rm = FALSE, show.legend = NA,
+  mapping = NULL, stat = "identity", position = "identity",
   inherit.aes = TRUE, ...)
 }
 \description{
 This function provides label meta data for the time series plot of earthquakes.
+
+This function provides label meta data for the time series plot of earthquakes.
 }
 \note{
+For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+
 For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
 }
 \examples{
@@ -42,8 +45,34 @@ p1<-p1 + ggtitle("NOAA Signficant Earthquakes Data with High Profile Events")
 p1
 
 }
+\dontrun{
+
+# For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+
+library(dplyr)
+library(ggplot2)
+
+any_name_df<-eq_clean_data(results)
+
+p1<- any_name_df \%>\% filter(COUNTRY =="CHINA" | COUNTRY=="USA" | COUNTRY=="GREECE") \%>\% 
+filter(datevalue > '1900-01-01', datevalue < '1950-01-01') \%>\% 
+ggplot()
+
+p1<-p1 + geom_timeline(aes(x = datevalue, y = COUNTRY, color = TOTAL_DEATHS, size = EQ_PRIMARY)) 
+
+p1<-p1 + geom_timeline_label(aes(x = datevalue, y = COUNTRY, magnitude = EQ_PRIMARY,label = location_name, max_labels= 5))
+
+p1<-p1 + ggtitle("NOAA Signficant Earthquakes Data with High Profile Events")
+
+p1
+
+}
 }
 \references{
+The following are usefule references:
+\url{https://ggplot2.tidyverse.org/reference/geom_text.html}
+\url{https://ggplot2.tidyverse.org/articles/ggplot2-specs.html}
+
 The following are usefule references:
 \url{https://ggplot2.tidyverse.org/reference/geom_text.html}
 \url{https://ggplot2.tidyverse.org/articles/ggplot2-specs.html}

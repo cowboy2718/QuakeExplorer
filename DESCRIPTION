@@ -11,7 +11,7 @@ Encoding: UTF-8
 LazyData: true
 VignetteBuilder: utils  ,
     knitr
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Imports:
     ggplot2,
     grid,
@@ -25,4 +25,3 @@ Imports:
     testthat
 Suggests: knitr,
     rmarkdown
-VignetteBuilder: knitr
