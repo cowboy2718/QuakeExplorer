@@ -19,14 +19,17 @@ From Wikipedia, we know that an "earthquake (also known as a quake, tremor or te
 
 The Significant Earthquake Database contains information on destructive earthquakes from 2150 B.C. to the present that meet at least one of the following criteria: Moderate damage (approximately $1 million or more), 10 or more deaths, Magnitude 7.5 or greater, Modified Mercalli Intensity X or greater, or the earthquake generated a tsunami.
 
-
 ### Leaflet Map of Earthquakes
 
 This package will create leaflet maps of earthquakes for a given region and time period.  Below is an example of a leaflet map of Greek earthquakes between 1900 and 1950 (note the example is not interactive).
 
 ![Greek earthquakes](greece.png)
 
-For more information, see https://en.wikipedia.org/wiki/Earthquake
+### Time Series of Earthquakes
+
+This package will create a time series map of earthquakes for a given regions and time periods.  Below is an example of a earthquakes occurring between 1900 and 1950 for the USA, Greece and China.
+
+![Time Series](Timeseries.png)
 
 ### What Does this Package Do?
 
@@ -37,17 +40,16 @@ This package, **QuakeExplorer**, is used to visually explore a specific dataset 
 
 To install this package and begin exploring earthquakes, use devtools and the following:
 
+```r
+devtools::install_github('cowboy2718/QuakeExplorer')
+library(QuakeExplorer)
+```
 
 ### Package Details
 
 Specific details on the package QuakeExplorer may be obtained through the vignette files.  The vignette files show specific usage and syntax.
 
 ### Travis Badge
-=======
-```r
-devtools::install_github('cowboy2718/QuakeExplorer')
-library(QuakeExplorer)
-```
 
 
 ### Package Details
