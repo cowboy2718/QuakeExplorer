@@ -12,5 +12,17 @@ LazyData: true
 VignetteBuilder: utils  ,
     knitr
 RoxygenNote: 6.1.0
+Imports:
+    ggplot2,
+    grid,
+    dplyr,
+    leaflet,
+    readr,
+    magrittr,
+    stringr,
+    lubridate,
+    utils,
+    testthat
 Suggests: knitr,
     rmarkdown
+VignetteBuilder: knitr

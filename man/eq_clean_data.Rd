@@ -2,16 +2,30 @@
 % Please edit documentation in R/QExplorer.R
 \name{eq_clean_data}
 \alias{eq_clean_data}
-\title{Cleaning the data set}
+\title{Formatting the imported NOAA Database into a usable format.}
 \usage{
 eq_clean_data(df)
 }
 \value{
-A location name that has a properly formatted text for analysis and graphing, latitude and longditude are numeric and the date is properly formatted.
+A formatted dataframe is returned with a location name that has a properly formatted for graphing, latitude and longditude values are numeric and dates are formatted approriately.
 }
 \description{
-This function cleans the original raw data set from the NOAA Signficant Earthquake Database and formats some columns to be used in exploratory analysis.
+This function modfies the original raw data set from the NOAA Signficant Earthquake Database by formatting key columns to be used in exploratory analysis.
 }
 \note{
-This function cleans key fields of the earth quake data set for exploratory analysis.
+This function modifies key fields of the imported NOAA earth quake data set for exploratory analysis.  It will also return a dataframe with a properly formatted date field called 'datevalue.'
+}
+\examples{
+\dontrun{
+
+# Use the "results" dataframe name from the import routine.
+# Reformat select fields for graphical analysis.  
+# Assign the newly formatted dataframe to a user chosen name.
+
+library(dplyr)
+any_name_df<-eq_clean_data(results)
+
+} 
+
+
 }
