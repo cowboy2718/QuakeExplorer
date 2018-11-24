@@ -2,7 +2,11 @@
 % Please edit documentation in R/spatial_explorer.R
 \name{eq_create_label}
 \alias{eq_create_label}
+<<<<<<< HEAD
 \title{Function for labeling spatial analysis of earthquake data (earth mapping)}
+=======
+\title{Spatial analysis of earthquake data (earth mapping) with detailed popups.}
+>>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968
 \usage{
 eq_create_label(data)
 }
@@ -18,16 +22,27 @@ For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
 # User inputs a country and range of dates to be explored.
 # The earth map will plot the points as a leaflet with a pop up based on the date of the event.
 # For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+<<<<<<< HEAD
+=======
+# Not all events will have a mortality value.
+>>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968
 
 library(leaflet)
 library(dplyr)
 
 any_name_df<-eq_clean_data(results)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968
 any_name_df<-any_name_df\%>\%filter(COUNTRY=="GREECE")\%>\% filter(datevalue > '1900-01-01', datevalue < '1950-01-01')
 any_name_df<-any_name_df\%>\%mutate(popup_info=eq_create_label(any_name_df))
 any_name_df\%>\%leaflet() \%>\% leaflet::addTiles()\%>\%addCircleMarkers(lng = ~LONGITUDE,lat = ~LATITUDE,radius = ~EQ_PRIMARY,weight=1,popup=~popup_info)
 
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968
 }

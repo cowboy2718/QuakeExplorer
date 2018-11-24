@@ -6,7 +6,7 @@ Author: person("Tony", "Gojanovic", email = "tonygojanovic@gmail.com",
                   role = c("aut", "cre"))
 Maintainer: Tony Gojanovic <tony.gojanovic@somewhere.net>
 Description: Provide an exploratory interface in R to the NOAA Significant Earthquakes dataset.
-License: GPL-3
+License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: utils  ,

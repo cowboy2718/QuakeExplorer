@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: "QuakeExplorer"
 author: "Tony Gojanovic"
@@ -102,3 +103,153 @@ any_name_df %>% filter(COUNTRY =="CHINA" | COUNTRY=="USA") %>% filter(datevalue 
 
 
 
+=======
+---
+title: "QuakeExplorer"
+author: "Tony Gojanovic"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## QuakeExplorer Package Overview
+
+QuakeExplorer is a R package used for the specific purpose of visually exploring earth quake data from NOAA (National Oceanic and Atmospheric Administration) Significant Earthquake Database.  
+
+Data can be obtained from the NOAA at https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&s=1&d=1.  The dataset is historical covering the time span from 2150 BCE to CE 2018  along with location and earthquake statistics such as magnitude, intensity and damage metrics (e.g. deaths) to name but a multitude of measures available for exploration.  
+
+QuakeExplorer provide routines for importing, cleaning (tidying) and plotting elements of the data set and is a simple package for exploring the NOAA Significant Earthquake Database for insights related to further analysis.
+
+## Package Usage
+
+This package is being used by the author in relation to studies in archaeology, specifically the ancient Minoan civilization (Aegean Bronze Age civilization) on the island of Crete and other Aegean Islands which flourished from about 2600 to 1600 BC, and also the subsequent or Mycenaean civilization) spanning the period from approximately 1600–1100 BC. The author's interest is specific to the effect of natural disasters on cultural and political developments of ancient cultures. Fortuitously the development of this package coincides with those studies.
+
+## R Packages
+
+The following R packages are used:
+
+```{r warning=FALSE, message=FALSE}
+library(QuakeExplorer)
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(leaflet)
+```
+
+## Dowloading and Importing the NOAA Significant Earthquake Data Set
+
+From the NOAA site (https://www.ngdc.noaa.gov/nndc/struts/form?t=101650&s=1&d=1.), follow the directions to export the earthquake data set as a **tab delimited** format which can be used for importing into R.  Specfically,
+
+1. The NOAA dataset is downloaded as a tab delimited file called **results**.  Follow the instruction on the NOAA site for downloading the entire dataset (about 5500 records).  
+2. The tab delimited file is placed in the R working directory for analysis.  
+3. The file must be given a **.csv** extension and will be called **results.csv** and is ready for import to a dataframe.  
+
+Then, the following can be used to import the data to an R data frame:
+
+```{r message=FALSE, eval=FALSE}
+library(readr)
+
+import_quake_data("results.csv")
+```
+
+The returned dataframe will default to the name **results**.
+
+## Formatting the Data
+
+Prior to analysis, the imported data set must be organized a bit.  Namely, combining year, month and day columns and making provisions for BC and AD dates (to a column or variable called **datevalue**).  The routine also assures that latitude and longitude are numeric and that the location name of an event is in a suitable text form.  
+
+```{r message=FALSE, eval=FALSE}
+library(dplyr)
+
+any_name_df<-eq_clean_data(results)
+```
+
+The return value is a formatted dataframe assigned to a new name assigned by the user.
+
+**Note:** The NOAA earthquake data set provides a variable column for the year, month and day of an event.  However, in some cases (e.g. some BC dates), no month or date has been provided.  In those cases, a 07-02 (July 2) date is applied to the year, which is simply the midpoint of a year.
+
+## Creating a Time Series Plot of Earthquake Events
+
+The main purpose of this package is to provide an option for the graphical exploration of the data as a time serioes through the creation of a new *geom* in R called **geom_timeline**.  
+
+Specific variables of interest are **COUNTRY**, **TOTAL_DEATHS** and **EQ_PRIMARY** (primary earthquake magnitude).  Since there is a significant amount of events recorded, the use of the variable **datevalue** can be used to reduce the data set for exploration.  
+
+Use of the **dplyr** library and piping may be used with **geom_timeline** geom.  Additional graphical features, such as titles, axis labeling and so on can added on through standard **ggplot2** syntax as shown below.
+
+```{r message=FALSE, eval=FALSE}
+
+# Data input file is first cleaned
+# For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+
+library(dplyr)
+library(ggplot2)
+
+any_name_df %>% filter(COUNTRY =="CHINA" | COUNTRY=="USA") %>% filter(datevalue > '1900-01-01', datevalue < '1950-01-01') %>% ggplot() + geom_timeline(aes(x = datevalue, y = COUNTRY, color = TOTAL_DEATHS, size = EQ_PRIMARY)) + ggtitle("NOAA Significant Earthquake Data Set")+ylab("Country")+xlab("Date") + scale_size_continuous(name = 'Richter') + scale_color_continuous(name = 'Mortality (deaths)') +theme(axis.text.x=element_text(angle=90,hjust=3))
+
+```
+
+Note: For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+
+## Labeling a Time Series Plot
+
+The time series intepretation of earthquake events can be further enhanced by adding a meta data layer to the time series graph with labels of specific locations based on high profile events.  Since labeling all locations would render an illegible display, the use of **geom_label** will limit the amount of labels to top magnitude events.  
+
+As stated previously, additonal enhancements can be made to the graph with standard ggplot syntax.
+
+```{r  message=FALSE, eval=FALSE}
+
+# For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+
+library(dplyr)
+library(ggplot2)
+
+any_name_df %>% filter(COUNTRY =="CHINA" | COUNTRY=="USA") %>% filter(datevalue > '1900-01-01', datevalue < '1950-01-01') %>% ggplot() +geom_timeline_label(aes(x = datevalue, y = COUNTRY, magnitude = EQ_PRIMARY,label = location_name, max_labels= 4))
+
+```
+
+Note: For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+
+## Spatial (Earth) Mapping - Interactive Display of Earthquake Data
+
+In addition to providing a time series description of events, a spatial interpretation of the data may also be rendered.  For this function, use of the leaflet library is used to render a map of the Earth.  Based on user input, of **COUNTRY** and **datevalue** a map is generated of earthquake events. 
+
+**Simple Pop Up Option** The following function only provides a map with a date leaflet of an event for the country.
+
+```{r message = FALSE, eval=FALSE}
+
+# User inputs a country and range of date to be explored.
+# The earth map will plot the points as a leaflet with a pop up based on the date of the event. 
+# For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+
+library(leaflet)
+library(dplyr)
+ 
+any_name_df%>%filter(COUNTRY=="GREECE")%>%filter(datevalue > '1900-01-01', datevalue < '1950-01-01') %>% eq_map(annot_col = "datevalue")
+
+```
+
+**Detailed Pop Up Option** A popup of date, location, magnitude and mortaility (loss of life) is also provided to use user with the following function.  Note that not all earthquake events will necessarily have a loss of life value (e.g. total deaths are unknown or not recorded).  
+
+```{r message=FALSE, eval=FALSE}
+
+# User inputs a country and range of dates to be explored.
+# The earth map will plot the points as a leaflet with a pop up based on the date of the event.
+# For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+
+library(leaflet)
+library(dplyr)
+ 
+any_name_df<-eq_clean_data(results)
+ 
+any_name_df<-any_name_df%>%filter(COUNTRY=="GREECE")%>% filter(datevalue > '1900-01-01', datevalue < '1950-01-01')
+any_name_df<-any_name_df%>%mutate(popup_info=eq_create_label(any_name_df))
+any_name_df%>%leaflet() %>% leaflet::addTiles()%>%addCircleMarkers(lng = ~LONGITUDE,lat = ~LATITUDE,radius = ~EQ_PRIMARY,weight=1,popup=~popup_info)
+```
+
+The user inputs the country name and date value range.  A popup is created and used with the leaflet library.
+
+Note: For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'
+>>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968

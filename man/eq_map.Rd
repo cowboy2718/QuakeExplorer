@@ -2,12 +2,20 @@
 % Please edit documentation in R/spatial_explorer.R
 \name{eq_map}
 \alias{eq_map}
+<<<<<<< HEAD
 \title{Routine for spatial analysis of earthquake data (earth mapping)}
+=======
+\title{Spatial analysis of earthquake data (earth mapping) with only a date popup.}
+>>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968
 \usage{
 eq_map(data, annot_col = NULL)
 }
 \description{
+<<<<<<< HEAD
 This function provides a spatial interpretation of earthquake data with a popup based on datevalue.
+=======
+This function provides a spatial interpretation of earthquake data with a popup based on datevalue.  This renders the earthquake data as an interactive map.
+>>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968
 }
 \note{
 For BC date ranges, use a one sided inequality e.g. datevalue < '0000-01-01'

@@ -1,7 +1,13 @@
+### Travis Badge
+
+The following indicates the status of the most recent build with Travis:
+
+[![Build Status](https://travis-ci.org/cowboy2718/QuakeExplorer.svg?branch=master)](https://travis-ci.org/cowboy2718/QuakeExplorer)
+
 ## QuakeExplorer
-R package to explore historical earthquake data found in the (National Oceanic and Atmospheric Administration) NOAA Significant Earthquakes dataset.
-Tony Gojanovic  
-August 2018  
+R package to explore historical earthquake data found in the (National Oceanic and Atmospheric Administration) NOAA Significant Earthquakes dataset.  
+Tony Gojanovic   
+September 2018  
 
 ### Background
 
@@ -13,24 +19,41 @@ From Wikipedia, we know that an "earthquake (also known as a quake, tremor or te
 
 The Significant Earthquake Database contains information on destructive earthquakes from 2150 B.C. to the present that meet at least one of the following criteria: Moderate damage (approximately $1 million or more), 10 or more deaths, Magnitude 7.5 or greater, Modified Mercalli Intensity X or greater, or the earthquake generated a tsunami.
 
+<<<<<<< HEAD
 ### Leaflet Map of Earthquakes
 
 This package will create leaflet maps of earthquakes for a given region and time period.  Below is an example of a leaflet map of Greek earthquakes between 1900 and 1950 (note the example is not interactive).
 
 ![Greek leaflet map](greece.png)
+=======
+For more information, see https://en.wikipedia.org/wiki/Earthquake
+
+### What Does this Package Do?
+
+This package, **QuakeExplorer**, is used to visually explore a specific dataset collected by the National Oceanic and Atmospheric Adminstration.  It is expected to be used as a preliminary method or jumping point for further studies.  This program can be used by geologists, archeologists, astronomers, anthropologists to name but a few disciplines that would find this data useful.
+
+>>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968
 
 ### Package Name and Location
 
-Package: FMEA   
-GitHub:  https://github.com/cowboy2718/QuakeExplorer
+To install this package and begin exploring earthquakes, use devtools and the following:
 
+<<<<<<< HEAD
 ### Package Details
 
 Specific details on the package QuakeExplorer may be obtained through the vignette files.  The vignette files show specific usage and syntax.
 
 ### Travis Badge
+=======
+```r
+devtools::install_github('cowboy2718/QuakeExplorer')
+library(QuakeExplorer)
+```
+>>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968
 
-The following indicates the status of the most recent build with Travis:
+### Package Details
+
+Specific details on the package QuakeExplorer may be obtained through the vignette files.  The vignette files show specific usage and syntax of the functions used in this package.
 
 ### References
 

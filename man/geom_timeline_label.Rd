@@ -4,8 +4,13 @@
 \alias{geom_timeline_label}
 \title{Geom for labeling the time series plot.}
 \usage{
+<<<<<<< HEAD
 geom_timeline_label(mapping = NULL, data = NULL, stat = "identity",
   position = "identity", na.rm = FALSE, show.legend = NA,
+=======
+geom_timeline_label(data = NULL, na.rm = FALSE, show.legend = NA,
+  mapping = NULL, stat = "identity", position = "identity",
+>>>>>>> ba2474472b2935bab9f6bd590364cd752bc82968
   inherit.aes = TRUE, ...)
 }
 \description{
